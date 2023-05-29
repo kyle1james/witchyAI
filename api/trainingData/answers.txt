@@ -1,0 +1,4 @@
+A **Redwood** is a project where you will build something from scratch. You will be given a topic, and you will need to research, design, build, and present an original project.
+Get Approval 🎉 Once your proposal meets all the requirements and you've incorporated any necessary feedback, you'll receive approval to start coding 
+Once your proposal meets all the requirements and you've incorporated any necessary feedback, you'll receive approval to start coding!
+Depends on your project type, redwood, Bonsai, or Sapling 

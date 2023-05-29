@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neural Network Training</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            background-color: #222;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+
+        h1, h2, label {
+            color: #fff;
+        }
+
+        textarea, input[type="number"], input[type="submit"] {
+            background-color: #444;
+            color: #fff;
+            border: 1px solid #888;
+            padding: 8px;
+            font-size: 14px;
+        }
+
+        input[type="submit"] {
+            cursor: pointer;
+        }
+
+        .graph-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #predictions {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Train Neural Network</h1>
+    <form id="train-form">
+        <label for="input_data">Input data:</label><br>
+        <textarea id="input_data" name="input_data" rows="4" cols="50"></textarea><br><br>
+        <label for="target_data">Target data:</label><br>
+        <textarea id="target_data" name="target_data" rows="4" cols="50"></textarea><br><br>
+        <label for="epochs">Epochs:</label>
+        <input type="number" id="epochs" name="epochs" value="5000"><br><br>
+        <label for="learning_rate">Learning rate:</label>
+        <input type="number" id="learning_rate" name="learning_rate" step="0.01" value="0.1"><br><br>
+        <input type="submit" value="Train">
+    </form>
+    <div class="graph-container">
+        <h2>Training Error Chart</h2>
+        <div id="training_error_chart" style="width:100%;height:400px;"></div>
+    </div>
+    <div class="graph-container">
+        <h2>Output Chart</h2>
+        <div id="output_chart" style="width:100%;height:400px;"></div>
+    </div>
+    <div id="predictions"></div>
+    <script>
+        $("#train-form").on("submit", function(event) {
+            event.preventDefault();
+            const input_data = $("#input_data").val();
+            const target_data = $("#target_data").val();
+            const epochs = $("#epochs").val();
+            const learning_rate = $("#learning_rate").val();
+            const requestData = {
+                "input_data": input_data,
+                "target_data": target_data,
+                "epochs": epochs,
+                "learning_rate": learning_rate
+            };
+            $.post("/train", requestData, function(response) {
+                const training_error_chart_data = [response.training_error_chart];
+                const output_chart_data = [response.output_chart];
+                const predictions = response.predictions;
+                $("#predictions").text("Predictions: " + JSON.stringify(predictions));
+                Plotly.newPlot("training_error_chart", training_error_chart_data);
+                Plotly.newPlot("output_chart", output_chart_data);
+              
+            }, "json");
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+*/keys
+*.DS_Store
+*.env
+*dpr
+*myenv
+*HCI
+dev

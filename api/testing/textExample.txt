@@ -1,0 +1,13 @@
+Welcome to the tiny Jiji API
+
+        This API provides access to the CrystalBall class, which can perform NLP tasks such as question answering.
+
+        To use the CrystalBall class, you need to initialize an instance and collect sentences from a document or text.
+
+        Here's an example usage:
+        
+        crystal_ball = CrystalBall()
+        document = "This is a sample document containing some sentences."
+        crystal_ball.collect_sentences(document)
+        
+        Once the sentences are collected, you can ask questions and get answers using the `answer_question()` method.
