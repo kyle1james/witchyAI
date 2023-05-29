@@ -1,6 +1,6 @@
 # 🧙‍♀️🔮 CrystalBall 🌙✨
 
-![img1](imgs/jij.png)
+![img1](api/imgs/jij.png)
 
 Welcome to the magical CrystalBall! This Python class allows you to harness the power of divination and answer questions using the HuggingFaces NLP (Natural Language Processing) LLM (Large Language Models)
 
